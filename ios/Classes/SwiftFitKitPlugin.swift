@@ -97,6 +97,29 @@ public class SwiftFitKitPlugin: NSObject, FlutterPlugin {
         }
     }
 
+    // Check authorization status
+     private func authorizationStatus(request: PermissionsRequest, result: @escaping FlutterResult) {
+     let authorized = request.sampleTypes.map {
+                        healthStore!.authorizationStatus(for: $0)
+                    }
+                    .allSatisfy {
+                        $0 == HKAuthorizationStatus.sharingAuthorized
+                    }
+            result(authorized)
+
+    }
+
+    private func requestPermissions(request: PermissionsRequest, result: @escaping FlutterResult) {
+        requestAuthorization(sampleTypes: request.sampleTypes) { success, error in
+            guard success else {
+                result(false)
+                return
+            }
+
+            result(true)
+        }
+    }
+
     /**
     * Not supported by HealthKit.
     */
