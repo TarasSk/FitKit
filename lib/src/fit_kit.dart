@@ -10,6 +10,11 @@ class FitKit {
       "types": types.map((type) => _dataTypeToString(type)).toList(),
     });
   }
+  static Future<bool> authorizationStatus(List<DataType> types) async {
+    return await _channel.invokeMethod('authorizationStatus', {
+      "types": types.map((type) => _dataTypeToString(type)).toList(),
+    });
+  }
 
   /// If you're using more than one DataType it's advised to call requestPermissions with all the data types once,
   /// otherwise iOS HealthKit will ask to approve every permission one by one in separate screens.
