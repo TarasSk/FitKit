@@ -38,7 +38,7 @@ public class SwiftFitKitPlugin: NSObject, FlutterPlugin {
                 let request = try ReadRequest.fromCall(call: call)
                 read(request: request, result: result)
             } else if (call.method == "authorizationStatus") {
-                let request = try ReadRequest.fromCall(call: call)
+                let request = try PermissionsRequest.fromCall(call: call)
                 authorizationStatus(request: request, result: result)
             } else {
                 result(FlutterMethodNotImplemented)
