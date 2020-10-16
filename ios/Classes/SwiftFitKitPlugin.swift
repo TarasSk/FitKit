@@ -109,17 +109,6 @@ public class SwiftFitKitPlugin: NSObject, FlutterPlugin {
 
     }
 
-    private func requestPermissions(request: PermissionsRequest, result: @escaping FlutterResult) {
-        requestAuthorization(sampleTypes: request.sampleTypes) { success, error in
-            guard success else {
-                result(false)
-                return
-            }
-
-            result(true)
-        }
-    }
-
     /**
     * Not supported by HealthKit.
     */
